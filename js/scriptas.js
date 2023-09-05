@@ -26,7 +26,7 @@ const spaceshipSpeed = 10;
 
 // Variáveis para controlar os asteroides
 const asteroids = [];
-let asteroidSpeed = 0.5;
+const asteroidSpeed = 0.5;
 
 let asteroidCreationCounter = 0;
 const asteroidCreationInterval = 60; // Altere este valor para ajustar a frequência de criação
@@ -41,15 +41,6 @@ let bulletsRemaining = 30; // Inicie com 30 balas
 
 // Variável para controlar o estado do jogo
 let gameOver = false;
-
-// Variável para controlar a velocidade inicial dos asteroides
-let initialAsteroidSpeed = 0.5;
-
-// Variável para controlar quantos asteroides foram destruídos
-let destroyedAsteroids = 0;
-
-// Variável para controlar se a nave espacial pode disparar
-let canShoot = true;
 
 // Função para criar um asteroide
 function createAsteroid() {
@@ -66,15 +57,11 @@ function createAsteroid() {
 
 // Função para criar um tiro
 function createBullet() {
-    if (canShoot && bulletsRemaining > 0) {
+    if (bulletsRemaining > 0) {
         bullets.push({ x: spaceshipX + spaceshipWidth / 2, y: spaceshipY });
         bulletsRemaining--;
-        canShoot = false; // Impedir que mais balas sejam disparadas temporariamente
     }
 }
-
-// Adicione um event listener para o botão direito do mouse para atirar
-canvas.addEventListener("mousedown", createBullet);
 
 // Função para atualizar a posição dos tiros
 function updateBullets() {
@@ -94,8 +81,6 @@ function updateBullets() {
                 // Aumentar o score e dar 2 balas
                 score += 100;
                 bulletsRemaining += 2;
-                destroyedAsteroids++;
-                canShoot = true; // Permitir que uma nova bala seja disparada
                 break; // Sair do loop interno
             }
         }
@@ -103,13 +88,7 @@ function updateBullets() {
         // Remover tiros que saíram da tela
         if (bullets[i].y < 0) {
             bullets.splice(i, 1);
-            canShoot = true; // Permitir que uma nova bala seja disparada
         }
-    }
-
-    // Verificar se o jogador atingiu a pontuação desejada (10.000 pontos)
-    if (score >= 10000) {
-        gameOver = true;
     }
 }
 
@@ -158,9 +137,7 @@ function drawGameOverScreen() {
 
 // Função principal do jogo
 function gameLoop() {
-    // Defina um fundo para o canvas
-    ctx.fillStyle = "#ffffff"; // Cor branca
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (!gameOver) {
         // Atualize a posição da nave espacial
@@ -181,6 +158,9 @@ function gameLoop() {
         }
 
         // Atualize e desenhe os tiros
+        if (spacePressed) {
+            createBullet();
+        }
         updateBullets();
 
         // Verifique colisões
@@ -193,12 +173,6 @@ function gameLoop() {
                 gameOver = true;
                 break;
             }
-        }
-
-        // Verifique se destruiu 2 asteroides para aumentar a velocidade
-        if (destroyedAsteroids >= 2) {
-            destroyedAsteroids = 0;
-            asteroidSpeed += 0.1;
         }
 
         // Desenhe a nave espacial, os asteroides, os tiros e o HUD
@@ -217,6 +191,7 @@ function gameLoop() {
 // Controle de teclado
 let rightPressed = false;
 let leftPressed = false;
+let spacePressed = false;
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -226,9 +201,11 @@ function keyDownHandler(event) {
         rightPressed = true;
     } else if (event.key == "Left" || event.key == "ArrowLeft") {
         leftPressed = true;
+    } else if (event.key == " ") {
+        spacePressed = true;
     } else if (event.key == "r" || event.key == "R") {
+        // Recomeçar o jogo ao pressionar a tecla "R"
         if (gameOver) {
-            // Reinicie o jogo quando pressionar a tecla "R" após o Game Over
             restartGame();
         }
     }
@@ -239,6 +216,8 @@ function keyUpHandler(event) {
         rightPressed = false;
     } else if (event.key == "Left" || event.key == "ArrowLeft") {
         leftPressed = false;
+    } else if (event.key == " ") {
+        spacePressed = false;
     }
 }
 
@@ -252,7 +231,6 @@ function restartGame() {
     asteroids.length = 0;
     spaceshipX = canvas.width / 2;
     spaceshipY = canvas.height - 50;
-    asteroidSpeed = initialAsteroidSpeed; // Reinicie a velocidade dos asteroides
 
     // Inicie o loop do jogo novamente
     gameLoop();

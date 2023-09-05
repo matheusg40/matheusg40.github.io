@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  overflow: hidden; /* Evita a barra de rolagem horizontal */
+  background-color: #000; /* Cor de fundo do jogo */
+}
+
+canvas {
+  display: block; /* Remova qualquer espaço em branco ao redor do canvas */
+}
+
+/* Estilize a mensagem de "Você ganhou!" */
+.game-over-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+}
+
+/* Estilize o botão de recomeçar */
+.restart-button {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #000;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Estilize o HUD (pontuação e balas restantes) */
+.hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #fff;
+  font-size: 24px;
+}

@@ -1,7 +1,9 @@
 html, body{
     margin: 0px;
     padding: 0px;
-
+     overflow-x: hidden; /* Oculta a barra de rolagem horizontal */
+   
+    
 }
 
 body{
