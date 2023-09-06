@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-insta.css">
+    <link href="https://fonts.googleapis.com/css?family=Helvetica+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Meu Instagram</title>
+    <style>
+        /* Estilos para o modal */
+        .header {
+            margin: 10px 5% 40px 5%;    
+
+        }
+
+        /* Estilos para o main */
+    
+      
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 400px; /* Defina o tamanho máximo do modal aqui */
+            margin: 0 auto;
+        }
+
+        .modal h2 {
+            margin-top: 0;
+        }
+
+        .modal form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal input[type="file"],
+        .modal textarea,
+        .modal input[type="text"] {
+            margin: 10px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .modal button[type="submit"] {
+            padding: 8px 16px;
+            background-color: #3897f0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Estilos para os posts */
+        .post {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px; /* Largura fixa para os posts */
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .post img {
+            max-width: 100%; /* Imagens de largura máxima de 100% */
+            height: auto; /* Mantém a proporção da imagem */
+        }
+
+        /* Estilo do botão "Adicionar Post" */
+        #add-post-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #3897f0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Estilos adicionais (ajuste conforme necessário) */
+    </style>
+</head>
+<body>
+   
+    <div class="navigation" id="navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="curriculo.html">Currículo</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li id="treslinhas-icon" class="treslinhas-icon" onclick="openNav()">&#9776;</li>
+        </ul>
+    </div>
+
+    <div class="main">
+
+
+        <ul class="caminho">
+            <li><a href="index.html">Home</a></li>
+            <li>></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li>></li>
+            <li>joguinh</li>
+        </ul>
+    </div>
+  
+
+
+  <header class="header">
+    <div class="logo">
+        <img src="img/instagram-logo.png" alt="Instagram Logo">
+        <span>Instagram</span>
+    </div>
+
+ 
+
+    <div class="search-bar">
+        <input type="text" placeholder="Pesquisar">
+    </div>
+    <div class="user-menu">
+        <a href="#" class="user-profile" onclick="openEditProfileModal()">
+            <img src="img/matheus-perfil.png" alt="Minha Foto de Perfil" id="profile-picture-header">
+            <span>seunome_de_usuario</span>
+            <span class="profile-verified"><i class="fas fa-check-circle"></i></span>
+        </a>
+    </div>
+</header>
+    
+    <div class="profile">
+        <div class="profile-header">
+            <img src="img/matheus-perfil.png" alt="Minha Foto de Perfil" class="profile-picture" id="profile-picture">
+            <div class="profile-info">
+                <h1 class="username" id="profile-username">seunome_de_usuario</h1>
+                <button class="settings"><i class="fas fa-cog"></i></button>
+                <button class="follow-button" onclick="toggleFollow()">Seguir</button>
+            </div>
+        </div>
+        <div class="profile-stats">
+            <p><strong class="post-count">0</strong> Postagens</p>
+            <p><strong>Seguidores:</strong> 1000</p>
+            <p><strong>Seguindo:</strong> 500</p>
+        </div>
+        <div class="profile-bio">
+            <p>Olá, eu sou um usuário do Instagram! 📸</p>
+        </div>
+
+        <!-- Seção de Postagens dentro do perfil -->
+        <div class="post-section">
+            <!-- Exemplo de postagem -->
+            <div class="post">
+                <img src="img/post1.jpg" alt="Post 1">
+                <p>Legenda do post 1.</p>
+                <button id="toggle-comments-1" onclick="toggleComments(1)">Ver Comentários</button>
+                <div id="comments-1" style="display: none;">
+                    <p>Comentário 1</p>
+                    <p>Comentário 2</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão para adicionar um novo post -->
+    <button id="add-post-button" onclick="openAddPostModal()">Adicionar Post</button>
+
+    <!-- Modal para adicionar um novo post (inicialmente oculto) -->
+    <div id="add-post-modal" class="modal">
+        <div class="modal-content">
+            <h2>Adicionar Novo Post</h2>
+            <form id="post-form">
+              <span class="close" onclick="closeAddPostModal()">&times;</span>
+
+                <input type="file" accept="image/*" id="post-image" required>
+                <textarea placeholder="Legenda" id="post-caption" ></textarea>
+                <button type="submit">Publicar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para editar perfil (inicialmente oculto) -->
+     <!-- Modal para editar perfil (inicialmente oculto) -->
+     <div id="edit-profile-modal" class="modal">
+      <div class="modal-content">
+          <h2>Editar Perfil</h2>
+         
+          <span class="close" onclick="closeEditProfileModal()">&times;</span>
+
+
+          <form id="edit-profile-form">
+              <input type="file" accept="image/*" id="edit-profile-image">
+              <input type="text" placeholder="Novo Nome de Usuário" id="edit-profile-username">
+              <button type="submit">Salvar</button>
+          </form>
+      </div>
+  </div>
+
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <!-- Links do rodapé -->
+    </footer>
+
+    <script>
+      // Função para contar o número de elementos com a classe 'post'
+      function countPosts() {
+          const posts = document.querySelectorAll('.post');
+          return posts.length;
+      }
+  
+      // Função para atualizar o número de postagens no perfil
+      function updatePostCount() {
+          const postCount = countPosts();
+          const postCountElement = document.querySelector('.post-count');
+  
+          if (postCountElement) {
+              postCountElement.textContent = postCount;
+          }
+      }
+  
+      // Chame a função para atualizar o número de postagens quando a página carregar
+      window.addEventListener('load', updatePostCount);
+  
+      // Função para abrir o modal de adicionar post
+      function openAddPostModal() {
+          const modal = document.getElementById('add-post-modal');
+          modal.style.display = 'block';
+      }
+  
+      // Função para fechar o modal de adicionar post
+      function closeAddPostModal() {
+          const modal = document.getElementById('add-post-modal');
+          modal.style.display = 'none';
+      }
+  
+      // Função para abrir o modal de editar perfil
+      function openEditProfileModal() {
+          const modal = document.getElementById('edit-profile-modal');
+          modal.style.display = 'block';
+      }
+  
+      // Função para fechar o modal de editar perfil
+      function closeEditProfileModal() {
+          const modal = document.getElementById('edit-profile-modal');
+          modal.style.display = 'none';
+      }
+  
+      // Função para editar o perfil
+      function editProfile() {
+          const profileImageElement = document.getElementById('profile-picture');
+          const profileUsernameElement = document.getElementById('profile-username');
+          const profileImageElementHeader = document.getElementById('profile-picture-header');
+  
+          const newImage = document.getElementById('edit-profile-image').files[0];
+          const newUsername = document.getElementById('edit-profile-username').value;
+  
+          if (newImage) {
+              profileImageElement.src = URL.createObjectURL(newImage);
+              profileImageElementHeader.src = URL.createObjectURL(newImage);
+          }
+  
+          if (newUsername) {
+              profileUsernameElement.textContent = newUsername;
+          }
+  
+          closeEditProfileModal();
+      }
+  
+      // Função para alternar a exibição de comentários (igual à sua implementação anterior)
+      function toggleComments(postId) {
+          const commentsElement = document.querySelector(`#comments-${postId}`);
+          const toggleButton = document.querySelector(`#toggle-comments-${postId}`);
+          
+          if (commentsElement.style.display === 'none' || commentsElement.style.display === '') {
+              commentsElement.style.display = 'block';
+              toggleButton.textContent = 'Ocultar Comentários';
+          } else {
+              commentsElement.style.display = 'none';
+              toggleButton.textContent = 'Ver Comentários';
+          }
+      }
+  
+      // Função para alternar seguir/deixar de seguir (igual à sua implementação anterior)
+      function toggleFollow() {
+          const followButton = document.querySelector('.follow-button');
+          
+          if (followButton.textContent === 'Seguir') {
+              followButton.textContent = 'Deixar de Seguir';
+              followButton.classList.add('following');
+          } else {
+              followButton.textContent = 'Seguir';
+              followButton.classList.remove('following');
+          }
+      }
+  
+      // Função para lidar com o envio do formulário de postagem
+      const postForm = document.getElementById('post-form');
+      postForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+          
+          // Obtenha os valores do formulário (imagem e legenda)
+          const postImage = document.getElementById('post-image').files[0];
+          const postCaption = document.getElementById('post-caption').value;
+  
+          // Crie um novo elemento de postagem
+          const newPost = document.createElement('div');
+          newPost.className = 'post';
+          
+          const postImageElement = document.createElement('img');
+          postImageElement.src = URL.createObjectURL(postImage);
+          postImageElement.alt = 'Nova Postagem';
+          newPost.appendChild(postImageElement);
+  
+          const postCaptionElement = document.createElement('p');
+          postCaptionElement.textContent = postCaption;
+          newPost.appendChild(postCaptionElement);
+  
+          const toggleCommentsButton = document.createElement('button');
+          toggleCommentsButton.textContent = 'Ver Comentários';
+          toggleCommentsButton.addEventListener('click', function() {
+              toggleComments(countPosts());
+          });
+          newPost.appendChild(toggleCommentsButton);
+  
+          const commentsElement = document.createElement('div');
+          commentsElement.id = 'comments-' + countPosts();
+          commentsElement.style.display = 'none';
+          newPost.appendChild(commentsElement);
+  
+          // Adicione a nova postagem à seção de postagens
+          const postSection = document.querySelector('.post-section');
+          postSection.appendChild(newPost);
+  
+          // Feche o modal e limpe o formulário
+          closeAddPostModal();
+          postForm.reset();
+  
+          // Atualize o número de postagens
+          updatePostCount();
+      });
+  
+      // Função para lidar com o envio do formulário de edição de perfil
+      const editProfileForm = document.getElementById('edit-profile-form');
+      editProfileForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+          
+          // Chame a função para editar o perfil
+          editProfile();
+      });
+  </script>
+  
+</body>
+</html>
