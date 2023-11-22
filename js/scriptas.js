@@ -37,7 +37,7 @@ let bulletSpeed = 5;
 
 // Variáveis para controlar o score e balas
 let score = 0;
-let bulletsRemaining = Math.random()+150; // Inicie com 30 balas
+let bulletsRemaining = 150; // Inicie com 30 balas
 
 // Variável para controlar o estado do jogo
 let gameOver = false;
