@@ -130,6 +130,75 @@ body{
 
 }
 
+
+.botao {
+	box-shadow: 0px 0px 0px 1px #43ff0f;
+	background-color:#5cbf2a;
+	border-radius:28px;
+	border:5px solid #edfcef;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:22px;
+	padding:9px 35px;
+	text-decoration:none;
+    margin-bottom: 15px;
+}
+.botao:hover {
+	background-color: #44c767  ;
+}
+.botao:active {
+	position:relative;
+	top:1px;
+}
+
+.botao2 {
+	box-shadow: 0px 0px 0px 1px #43ff0f;
+	background-color:#5cbf2a;
+	border-radius:28px;
+	border:5px solid #edfcef;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:22px;
+    margin-left:10px ;
+	padding:9px 35px;
+	text-decoration:none;
+}
+.botao2:hover {
+	background-color: #44c767  ;
+}
+.botao2:active {
+	position:relative;
+	top:1px;
+}
+
+
+ .comentarios{
+    color:white;
+    margin-top: 20px;
+
+}
+ .comentarios:hover{
+    color: #f27609;
+
+
+}
+
+.cp-text{ 
+    color: rgba(0,0,0,.7); 
+    text-shadow: 0 1px rgba(255, 255, 255, 0.1);
+   
+
+}
+footer {
+    position: fixed;
+    bottom:0;
+    
+}
+
 .main h1{
 
     color: white;

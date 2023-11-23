@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Open+Sans&display=swap"
         rel="stylesheet">
 
@@ -49,20 +50,32 @@
             <li>AgroNegocio</li>
         </ul>
 
-        <h1>Orçamento</h1>
+        <h1>Orçamentos</h1>
 
         <div class="container">
           <h2>Escolha o Tipo de Orçamento</h2>
       
           <div>
-            <button onclick="irParaOrcamentoAnual()">Orçamento Anual</button>
-            <button onclick="irParaOrcamentoPerene()">Orçamento Perene</button>
+            <button class="botao" onclick="irParaOrcamentoAnual()">Orçamento Anual</button>
+            <button class="botao2" onclick="irParaOrcamentoPerene()">Orçamento Perene</button>
+
+           
           </div>
       
-          <p class="create">Criado por: Matheus Gabriel</p>
+          <a class="comentarios" href="https://forms.gle/K2FjXoGXuuRniRTS8">Cócómentarios</a>
+          
+
         </div>
       
 
+
+
+        <footer class="rodape">
+          <p class="cp-text">
+            © Copyright 2023 Matheus Gabriel. Todos os direitos reservados.
+        </p>
+        </footer>
+        
     </div>
     <script>
       function irParaOrcamentoAnual() {
