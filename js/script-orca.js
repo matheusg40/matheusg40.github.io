@@ -27,9 +27,12 @@ function calcularDatas() {
 
   var intervaloDiasPlantio = Math.round((fimPlantio - inicioPlantio) / (1000 * 60 * 60 * 24));
 
-  if (intervaloDiasPlantio < 30 || intervaloDiasPlantio > 62) {
-    alert("O intervalo entre a data de início e a data de fim do plantio deve ser de pelo menos 30 dias e no máximo 62 dias.");
+  if (intervaloDiasPlantio < 10 || intervaloDiasPlantio > 62) {
+    document.getElementById("erroIntervalo").innerHTML = "O intervalo entre a data de início e a data de fim do plantio deve ser de pelo menos 10 dias e no máximo 62 dias.";
+    document.getElementById("erroIntervalo").style.color = "red";
     return;
+  }else{
+    document.getElementById("erroIntervalo").innerHTML = "";
   }
 
   var inicioColheita = new Date(fimPlantio);
