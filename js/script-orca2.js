@@ -15,7 +15,7 @@ function calcularDatas() {
 
   var inicioTratosCulturais = new Date();
   var fimTratosCulturais = new Date(dataPagamento);
-  fimTratosCulturais.setUTCDate(fimTratosCulturais.getUTCDate() - 63);
+  fimTratosCulturais.setUTCDate(fimTratosCulturais.getUTCDate() - 123);
 
   var inicioColheita = new Date(dataPagamento);
   inicioColheita.setUTCDate(inicioColheita.getUTCDate() - 122);
