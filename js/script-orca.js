@@ -36,8 +36,8 @@ function calcularDatas() {
 
   var inicioInsumos = new Date();
   var fimInsumos = new Date();
-  
   fimInsumos.setUTCMonth(fimInsumos.getUTCMonth() + 1);
+
   var intervaloDiasPlantio = Math.round((fimPlantio - inicioPlantio) / (1000 * 60 * 60 * 24));
 
   if (intervaloDiasPlantio < 10 || intervaloDiasPlantio > 62) {
@@ -62,8 +62,8 @@ function calcularDatas() {
   fimTratosCulturais.setUTCDate(fimTratosCulturais.getUTCDate() - 1);
 
   document.getElementById("inicioInsumos").innerHTML = formatarData(inicioInsumos);
-  document.getElementById("fimInsumos").innerHTML = formatarData(fimInsumos);
-  document.getElementById("inicioPlantio").innerHTML = formatarData(inicioPlantio);
+ document.getElementById("fimInsumos").innerHTML = formatarData(fimInsumos);
+   document.getElementById("inicioPlantio").innerHTML = formatarData(inicioPlantio);
   document.getElementById("fimPlantio").innerHTML = formatarData(fimPlantio);
   document.getElementById("inicioTratosCulturais").innerHTML = formatarData(inicioTratosCulturais);
   document.getElementById("fimTratosCulturais").innerHTML = formatarData(fimTratosCulturais);
