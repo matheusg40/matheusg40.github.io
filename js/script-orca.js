@@ -10,29 +10,41 @@ function verificarDataFimSemana(data) {
 }
 
 function calcularDatas() {
-  var inicioPlantio = new Date(document.getElementById("dataInicioPlantio").value + 'T00:00:00Z');
-  var fimPlantio = new Date(document.getElementById("dataFimPlantio").value + 'T00:00:00Z');
-  var intervaloColheita = parseInt(document.getElementById("intervaloColheita").value);
-  
+  var dataInicioPlantio = document.getElementById("dataInicioPlantio").value;
+  var dataFimPlantio = document.getElementById("dataFimPlantio").value;
+  var erroIntervalo = document.getElementById("erroIntervalo");
 
+  // Limpa a mensagem de erro
+  erroIntervalo.innerHTML = "";
+
+  // Verifica se as datas de início e fim do plantio estão preenchidas
+  if (!dataInicioPlantio || !dataFimPlantio) {
+    erroIntervalo.innerHTML = "Por favor, preencha as datas de início e fim do plantio.";
+    erroIntervalo.style.color = "red";
+    return;
+  }
+
+  var inicioPlantio = new Date(dataInicioPlantio + 'T00:00:00Z');
+  var fimPlantio = new Date(dataFimPlantio + 'T00:00:00Z');
+  var intervaloColheita = parseInt(document.getElementById("intervaloColheita").value);
 
   if (verificarDataFimSemana(inicioPlantio) || verificarDataFimSemana(fimPlantio)) {
-    alert("Por favor, escolha datas para o plantio que não caiam em finais de semana.");
+    erroIntervalo.innerHTML = "Por favor, escolha datas para o plantio que não caiam em finais de semana.";
+    erroIntervalo.style.color = "red";
     return;
   }
 
   var inicioInsumos = new Date();
   var fimInsumos = new Date();
-  fimInsumos.setUTCDate(fimInsumos.getUTCDate() + 30);
+  // Adicione aqui o restante do código relacionado a inicioInsumos e fimInsumos
+  // ...
 
   var intervaloDiasPlantio = Math.round((fimPlantio - inicioPlantio) / (1000 * 60 * 60 * 24));
 
   if (intervaloDiasPlantio < 10 || intervaloDiasPlantio > 62) {
-    document.getElementById("erroIntervalo").innerHTML = "O intervalo entre a data de início e a data de fim do plantio deve ser de pelo menos 10 dias e no máximo 62 dias.";
-    document.getElementById("erroIntervalo").style.color = "red";
+    erroIntervalo.innerHTML = "O intervalo entre a data de início e a data de fim do plantio deve ser de pelo menos 10 dias e no máximo 62 dias.";
+    erroIntervalo.style.color = "red";
     return;
-  }else{
-    document.getElementById("erroIntervalo").innerHTML = "";
   }
 
   var inicioColheita = new Date(fimPlantio);
@@ -59,11 +71,15 @@ function calcularDatas() {
   document.getElementById("inicioColheita").innerHTML = formatarData(inicioColheita);
   document.getElementById("fimColheita").innerHTML = formatarData(fimColheita);
   document.getElementById("dataPagamento").innerHTML = formatarData(dataPagamento);
+
+  // Limpa a mensagem de erro se não houver problema
+  erroIntervalo.innerHTML = "";
 }
 
 function mudarIntervaloColheita() {
   var intervaloColheita = parseInt(document.getElementById("intervaloColheita").value);
-  var novoIntervalo = prompt("Digite o novo intervalo desejado entre 30 e 62 dias:");
+  var novoIntervalo = prompt("Digite o novo intervalo desejado entre 10 e 62 dias:");
+  var erroIntervalo = document.getElementById("erroIntervalo");
 
   if (novoIntervalo === null) {
     // O usuário clicou em "Cancelar"
@@ -72,10 +88,14 @@ function mudarIntervaloColheita() {
 
   novoIntervalo = parseInt(novoIntervalo);
 
-  if (isNaN(novoIntervalo) || novoIntervalo < 30 || novoIntervalo > 62) {
-    alert("Por favor, digite um valor válido entre 30 e 62 dias.");
+  if (isNaN(novoIntervalo) || novoIntervalo < 10 || novoIntervalo > 62) {
+    erroIntervalo.innerHTML = "Por favor, digite um valor válido entre 10 e 62 dias.";
+    erroIntervalo.style.color = "red";
     return;
   }
 
   document.getElementById("intervaloColheita").value = novoIntervalo;
+
+  // Limpa a mensagem de erro se não houver problema
+  erroIntervalo.innerHTML = "";
 }
