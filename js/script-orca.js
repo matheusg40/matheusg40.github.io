@@ -38,7 +38,6 @@ function calcularDatas() {
   var fimInsumos = new Date();
   
   fimInsumos.setUTCMonth(fimInsumos.getUTCMonth() + 1);
-
   var intervaloDiasPlantio = Math.round((fimPlantio - inicioPlantio) / (1000 * 60 * 60 * 24));
 
   if (intervaloDiasPlantio < 10 || intervaloDiasPlantio > 62) {
