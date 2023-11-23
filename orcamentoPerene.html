@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Calculadora de Datas</title>
+</head>
+<body>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Calculadora de Datas</h2>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="dataPagamento">Data de Pagamento:</label>
+        <input type="date" id="dataPagamento" class="form-control">
+      </div>
+    </div>
+
+    <button onclick="calcularDatas()" class="btn btn-success btn-block mb-3">Calcular</button>
+
+    <h3 class="text-center mb-3">Resultados:</h3>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Descrição</th>
+          <th>Data Início</th>
+          <th>Data Fim</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Insumos</td>
+          <td id="inicioInsumos"></td>
+          <td id="fimInsumos"></td>
+        </tr>
+        <tr>
+          <td>Tratos Culturais</td>
+          <td id="inicioTratosCulturais"></td>
+          <td id="fimTratosCulturais"></td>
+        </tr>
+        <tr>
+          <td>Colheita</td>
+          <td id="inicioColheita"></td>
+          <td id="fimColheita"></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="create">Criado por: Matheus Gabriel</p>
+    
+    <!-- Botão para Voltar -->
+    <button onclick="window.location.href='orcamentoAnual.html'" class="btn btn-primary btn-block mt-2">Ir para a Orçamento Anual</button>
+    <button onclick="window.location.href='webdesign.agro.html'" class="btn btn-secondary btn-block">Voltar</button>
+ </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    function formatarData(data) {
+      var dia = data.getUTCDate().toString().padStart(2, '0');
+      var mes = (data.getUTCMonth() + 1).toString().padStart(2, '0');
+      var ano = data.getUTCFullYear().toString();
+      return `${dia}/${mes}/${ano}`;
+    }
+
+    function calcularDatas() {
+      var dataPagamento = new Date(document.getElementById("dataPagamento").value + 'T00:00:00Z');
+
+      var inicioInsumos = new Date();
+      var fimInsumos = new Date();
+      fimInsumos.setUTCMonth(fimInsumos.getUTCMonth() + 1);
+
+      var inicioTratosCulturais = new Date();
+      var fimTratosCulturais = new Date(dataPagamento);
+      fimTratosCulturais.setUTCDate(fimTratosCulturais.getUTCDate() - 63);
+
+      var inicioColheita = new Date(dataPagamento);
+      inicioColheita.setUTCDate(inicioColheita.getUTCDate() - 62);
+
+      var fimColheita = new Date(dataPagamento);
+      fimColheita.setUTCDate(fimColheita.getUTCDate() - 60);
+
+      document.getElementById("inicioInsumos").innerHTML = formatarData(inicioInsumos);
+      document.getElementById("fimInsumos").innerHTML = formatarData(fimInsumos);
+      document.getElementById("inicioTratosCulturais").innerHTML = formatarData(inicioTratosCulturais);
+      document.getElementById("fimTratosCulturais").innerHTML = formatarData(fimTratosCulturais);
+      document.getElementById("inicioColheita").innerHTML = formatarData(inicioColheita);
+      document.getElementById("fimColheita").innerHTML = formatarData(fimColheita);
+    }
+  </script>
+</body>
+</html>

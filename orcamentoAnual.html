@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+	<link rel="stylesheet" href="css/styles.css">,
+ 
+ <title>Calculadora de Orçamento</title>
+</head>
+<body>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Calculadora de Orçamento</h2>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="dataInicioPlantio">Data de Início do Plantio:</label>
+        <input type="date" id="dataInicioPlantio" class="form-control" max="<?= new DateTime('+1 month')->format('Y-m-d') ?>">
+      </div>
+      <div class="col-md-6">
+        <label for="dataFimPlantio">Data de Fim do Plantio:</label>
+        <input type="date" id="dataFimPlantio" class="form-control" max="<?= new DateTime('+2 months')->format('Y-m-d') ?>">
+      </div>
+    </div>
+
+    <!-- Adicionado trecho para escolha do intervalo de colheita -->
+    <div class="col-md-6">
+      <label for="intervaloColheita">Intervalo Colheita (dias):</label>
+      <select id="intervaloColheita" class="form-control">
+        <option value="90">90 dias</option>
+        <option value="100">100 dias</option>
+        <option value="110">110 dias</option>
+        <option value="120" selected>120 dias</option>
+      </select>
+    </div>
+
+    <button onclick="calcularDatas()" class="btn btn-success btn-block mb-3" style="margin-top: 20px;">Calcular</button>
+
+    <h3 class="text-center mb-3">Resultados:</h3>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Descrição</th>
+          <th>Data Início</th>
+          <th>Data Fim</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Insumos</td>
+          <td id="inicioInsumos"></td>
+          <td id="fimInsumos"></td>
+          
+        </tr>
+        <tr>
+          <td>Plantio</td>
+          <td id="inicioPlantio"></td>
+          <td id="fimPlantio"></td>
+        </tr>
+        <tr>
+          <td>Tratos Culturais</td>
+          <td id="inicioTratosCulturais"></td>
+          <td id="fimTratosCulturais"></td>
+        </tr>
+        <tr>
+          <td>Colheita</td>
+          <td id="inicioColheita"></td>
+          <td id="fimColheita"></td>
+        </tr>
+        <tr>
+          <td>Pagamento</td>
+          <td id="dataPagamento"></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="create">Criado por: Matheus Gabriel</p>
+
+    <!-- Botão para Voltar -->
+
+    <button onclick="window.location.href='orcamentoPerene.html'" class="btn btn-primary btn-block mt-2">Ir para a Orçamento Perene</button>
+    <button onclick="window.location.href='webdesign.agro.html'" class="btn btn-secondary btn-block">Voltar</button>
+  </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="js/script-orca.js"></script>
+</body>
+</html>
