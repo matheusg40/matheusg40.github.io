@@ -3,46 +3,25 @@
 <html>
 
 <head>
-    <title>Orçamento - Matheus Gabriel Souza Batista</title>
-
-    
-
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Open+Sans&display=swap"
-        rel="stylesheet">
-
-
-    <script type="text/javascript" src="js/script.js"></script>
+  <title>Orçamento - Matheus Gabriel Souza Batista</title>
 
 
 
-	<meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Open+Sans&display=swap"
+    rel="stylesheet">
 
 
-  <!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="https://matheusg40.matomo.cloud/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src='//cdn.matomo.cloud/matheusg40.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
+  <script type="text/javascript" src="js/script.js"></script>
 
 
 
-
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
 
 
 </head>
@@ -50,66 +29,63 @@
 
 <body>
 
+  <div class="navigation" id="navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="curriculo.html">Currículo</a></li>
+      <li><a href="contato.html">Contato</a></li>
+      <li id="treslinhas-icon" class="treslinhas-icon" onclick="openNav()">&#9776;</li>
+    </ul>
+  </div>
 
-  
+  <div class="main">
 
-    <div class="navigation" id="navigation">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="curriculo.html">Currículo</a></li>
-            <li><a href="contato.html">Contato</a></li>
-            <li id="treslinhas-icon" class="treslinhas-icon" onclick="openNav()">&#9776;</li>
-        </ul>
+
+    <ul class="caminho">
+      <li><a href="index.html">Home</a></li>
+      <li>></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li>></li>
+      <li>AgroNegocio</li>
+    </ul>
+
+    <h1>Orçamentos</h1>
+
+    <div class="container">
+      <h2>Escolha o Tipo de Orçamento</h2>
+
+      <div>
+        <button class="botao" onclick="irParaOrcamentoAnual()">Orçamento Anual</button>
+        <button class="botao2" onclick="irParaOrcamentoPerene()">Orçamento Perene</button>
+
+
+      </div>
+
+      <a class="comentarios" href="https://forms.gle/5o5518DdFcU9ZBgL9">Cócómentarios</a>
+
+
     </div>
 
-    <div class="main">
-
-
-        <ul class="caminho">
-            <li><a href="index.html">Home</a></li>
-            <li>></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li>></li>
-            <li>AgroNegocio</li>
-        </ul>
-
-        <h1>Orçamentos</h1>
-
-        <div class="container">
-          <h2>Escolha o Tipo de Orçamento</h2>
-      
-          <div>
-            <button class="botao" onclick="irParaOrcamentoAnual()">Orçamento Anual</button>
-            <button class="botao2" onclick="irParaOrcamentoPerene()">Orçamento Perene</button>
-
-           
-          </div>
-      
-          <a class="comentarios" href="https://forms.gle/5o5518DdFcU9ZBgL9">Cócómentarios</a>
-          
-
-        </div>
-      
 
 
 
-        <footer class="rodape">
-          <p class="cp-text">
-            © Copyright 2023 Matheus Gabriel. Todos os direitos reservados.
-        </p>
-        </footer>
-        
-    </div>
-    <script>
-      function irParaOrcamentoAnual() {
-        window.location.href = 'orcamentoAnual.html';
-      }
-  
-      function irParaOrcamentoPerene() {
-        window.location.href = 'orcamentoPerene.html';
-      }
-    </script>
+    <footer class="rodape">
+      <p class="cp-text">
+        © Copyright 2023 Matheus Gabriel. Todos os direitos reservados.
+      </p>
+    </footer>
+
+  </div>
+  <script>
+    function irParaOrcamentoAnual() {
+      window.location.href = 'orcamentoAnual.html';
+    }
+
+    function irParaOrcamentoPerene() {
+      window.location.href = 'orcamentoPerene.html';
+    }
+  </script>
 
 
 </body>
