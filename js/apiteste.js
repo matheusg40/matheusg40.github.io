@@ -1,3 +1,7 @@
+function showLoggedInContent() {
+    document.getElementById('movies-container').classList.remove('hidden');
+}
+
 function login(event) {
     event.preventDefault();
     var emailOrUsername = document.getElementById('loginEmail').value;
@@ -11,10 +15,15 @@ function login(event) {
     
     if (user && user.password === password) {
         alert('Login bem-sucedido!');
-        // Aqui você pode redirecionar o usuário para a página desejada após o login
+        showLoggedInContent();
     } else {
         document.getElementById('loginErrorMessage').textContent = 'Nome de usuário ou email ou senha incorretos. Por favor, tente novamente.';
     }
+}
+
+function showRegistrationForm() {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('registerForm').style.display = 'block';
 }
 
 function register(event) {
@@ -23,13 +32,11 @@ function register(event) {
     var email = document.getElementById('email').value;
     var password = document.getElementById('passwordReg').value;
     
-    // Verificar se o nome de usuário já está em uso
     if (isUsernameTaken(username)) {
         document.getElementById('registerErrorMessage').textContent = 'O nome de usuário já está em uso. Por favor, escolha outro nome de usuário.';
         return;
     }
     
-    // Verificar se a senha atende aos critérios mínimos de segurança
     if (!isStrongPassword(password)) {
         document.getElementById('registerErrorMessage').textContent = 'A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais.';
         return;
@@ -46,12 +53,9 @@ function register(event) {
     
     localStorage.setItem('userData', JSON.stringify(userData));
     
-    document.getElementById('registerErrorMessage').textContent = ''; // Limpa a mensagem de erro se o registro for bem-sucedido
+    document.getElementById('registerErrorMessage').textContent = '';
     
     alert('Registro bem-sucedido! Faça login com suas novas credenciais.');
-    
-    // Após o registro, atualize a tabela com os dados de email e senha
-    updateTable(userData);
     
     document.getElementById('loginForm').style.display = 'block';
     document.getElementById('registerForm').style.display = 'none';
@@ -65,27 +69,22 @@ function isUsernameTaken(username) {
 }
 
 function isStrongPassword(password) {
-    // Verificar se a senha tem pelo menos 8 caracteres
     if (password.length < 8) {
         return false;
     }
     
-    // Verificar se a senha contém pelo menos uma letra maiúscula
     if (!/[A-Z]/.test(password)) {
         return false;
     }
     
-    // Verificar se a senha contém pelo menos uma letra minúscula
     if (!/[a-z]/.test(password)) {
         return false;
     }
     
-    // Verificar se a senha contém pelo menos um número
     if (!/\d/.test(password)) {
         return false;
     }
     
-    // Verificar se a senha contém pelo menos um caractere especial
     if (!/[\W_]/.test(password)) {
         return false;
     }
@@ -93,24 +92,51 @@ function isStrongPassword(password) {
     return true;
 }
 
-function showRegistrationForm() {
+function showLoggedInContent() {
     document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('registerForm').style.display = 'block';
+    document.getElementById('registerForm').style.display = 'none';
+    document.getElementById('movies-container').classList.remove('hidden');
 }
 
-// Função para atualizar a tabela com os dados de email e senha
-function updateTable(userData) {
-    var tableBody = document.getElementById('userTableBody');
-    tableBody.innerHTML = '';
+function addMovie(event) {
+    event.preventDefault();
+    var title = document.getElementById('title').value;
+    var director = document.getElementById('director').value;
+    var year = document.getElementById('year').value;
     
-    userData.forEach(function(user) {
-        var row = tableBody.insertRow();
-        var emailCell = row.insertCell(0);
-        var passwordCell = row.insertCell(1);
-        
-        emailCell.textContent = user.email;
-        passwordCell.textContent = user.password;
-    });
+    var movieList = document.getElementById('movie-list');
+    var listItem = document.createElement('li');
+    listItem.textContent = title + ' - Directed by ' + director + ', ' + year;
+    movieList.appendChild(listItem);
     
-    document.getElementById('userTable').style.display = 'block';
+    // Limpar campos do formulário após adicionar o filme
+    document.getElementById('title').value = '';
+    document.getElementById('director').value = '';
+    document.getElementById('year').value = '';
 }
+
+function logout() {
+    // Simplesmente recarregar a página para simular o logout
+    location.reload();
+}
+
+function showLoginForm() {
+    document.getElementById('registerForm').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';
+}
+
+  
+// Função para atualizar a tabela sem os dados de email
+// function updateTable(userData) {
+//     var tableBody = document.getElementById('userTableBody');
+//     tableBody.innerHTML = '';
+    
+//     userData.forEach(function(user) {
+//         var row = tableBody.insertRow();
+//         var passwordCell = row.insertCell(0);
+        
+//         passwordCell.textContent = user.password;
+//     });
+    
+//     document.getElementById('userTable').style.display = 'block';
+// }
