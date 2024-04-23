@@ -1,5 +1,16 @@
 function showLoggedInContent() {
-    document.getElementById('movies-container').classList.remove('hidden');
+    var userData = JSON.parse(localStorage.getItem('userData'));
+    var loggedInUser = userData.find(function(user) {
+        return user.isLoggedIn === true;
+    });
+
+    if (loggedInUser) {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('movies-container').classList.remove('hidden');
+        // Exibe a mensagem de boas-vindas com o nome do usuário
+        document.getElementById('welcome-message').textContent = 'Bem-vindo, ' + loggedInUser.username + '!';
+    }
 }
 
 function login(event) {
@@ -15,11 +26,15 @@ function login(event) {
     
     if (user && user.password === password) {
         alert('Login bem-sucedido!');
+        // Define o status de login do usuário
+        user.isLoggedIn = true;
+        localStorage.setItem('userData', JSON.stringify(userData));
         showLoggedInContent();
     } else {
         document.getElementById('loginErrorMessage').textContent = 'Nome de usuário ou email ou senha incorretos. Por favor, tente novamente.';
     }
 }
+
 
 function showRegistrationForm() {
     document.getElementById('loginForm').style.display = 'none';
@@ -116,7 +131,13 @@ function addMovie(event) {
 }
 
 function logout() {
-    // Simplesmente recarregar a página para simular o logout
+    // Limpa a flag de login do usuário
+    var userData = JSON.parse(localStorage.getItem('userData'));
+    userData.forEach(function(user) {
+        user.isLoggedIn = false;
+    });
+    localStorage.setItem('userData', JSON.stringify(userData));
+    // Recarrega a página
     location.reload();
 }
 

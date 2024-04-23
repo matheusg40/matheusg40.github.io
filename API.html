@@ -13,59 +13,127 @@
         .hidden{ 
             display: none;
         }
+        body {
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=email] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+#voltar {
+  width: 10%;
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+
+
+
+::placeholder{
+
+}
+#filme , #logout{
+    width: 20%;
+}
+
+
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  #voltar {
+     width: 100%;
+  }
+}
+
     </style>
 
 </head>
 <body>
 
-<div class="navigation" id="navigation">
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="curriculo.html">Currículo</a></li>
-        <li><a href="contato.html">Contato</a></li>
-    </ul>
-</div>
 
-<div class="main">
-    <form id="loginForm" method="POST" onsubmit="login(event)">
-        <label for="loginEmail">Nome de Usuário ou Email:</label><br>
-        <input type="text" id="loginEmail" name="loginEmail" required><br>
-        <label for="password">Senha:</label><br>
-        <input type="password" id="password" name="password" required><br>
-        <button type="submit">Entrar</button>
-        <!-- <a href="#" onclick="showPasswordRecoveryForm()">Esqueceu sua senha?</a> -->
-        <div id="loginErrorMessage" class="error-message"></div>
-    </form>
-    
-    <button onclick="showRegistrationForm()">Registrar</button>
-
-    <!-- Formulário de registro -->
-    <form id="registerForm" method="POST" style="display: none;" onsubmit="register(event)">
-        <label for="username">Nome de Usuário:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br>
-        <label for="passwordReg">Senha:</label><br>
-        <input type="password" id="passwordReg" name="passwordReg" required><br>
-        <button type="submit">Registrar</button>
-        <!-- Botão de voltar para o formulário de login -->
-        <button type="button" onclick="showLoginForm()">Voltar</button>
-        <div id="registerErrorMessage" class="error-message"></div>
-    </form>
-
-    <div id="movies-container" class="container hidden"> 
-        <h2>Movie Catalog</h2>
-        <ul id="movie-list"></ul>
-        <form id="addMovieForm" onsubmit="addMovie(event)">
-            <input type="text" id="title" placeholder="Title" required>
-            <input type="text" id="director" placeholder="Director" required>
-            <input type="text" id="year" placeholder="Year" required>
-            <button type="submit">Add Movie</button>
-        </form>
-        <button id="logout" onclick="logout()">Logout</button>
+    <div class="navigation" id="navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="curriculo.html">Currículo</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
     </div>
-</div>
+    
+    <div class="main">
+        <form id="loginForm" method="POST" onsubmit="login(event)">
+            <label for="loginEmail">Usuário ou Email:</label><br>
+            <input type="text" id="loginEmail" name="loginEmail" placeholder="username" required><br>
+            <label for="password">Senha:</label><br>
+            <input type="password" id="password" name="password" placeholder="password" required><br>
+            <button type="submit">Entrar</button>  
+            <button onclick="showRegistrationForm()">Registrar</button>
+      
+            <!-- <a href="#" onclick="showPasswordRecoveryForm()">Esqueceu sua senha?</a> -->
+            <div id="loginErrorMessage" class="error-message"></div>
+           
+        </form>
+    </br>
+       
+    
+        <!-- Formulário de registro -->
+        <form id="registerForm" method="POST" style="display: none;" onsubmit="register(event)">
+            <label for="username">Nome de Usuário:</label><br>
+            <input type="text" id="username" name="username" placeholder="username" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" placeholder="email" required><br>
+            <label for="passwordReg">Senha:</label><br>
+            <input type="password" id="passwordReg" name="passwordReg" placeholder="password" required><br>
+            <button type="submit">Registrar</button>
+            <!-- Botão de voltar para o formulário de login -->
+            <button type="button" onclick="showLoginForm()" id="voltar">Voltar</button>
+            <div id="registerErrorMessage" class="error-message"></div>
+        </form>
+
+        <div id="movies-container" class="container hidden"> 
+            <h2>Movie Catalog</h2>
+            <p id="welcome-message"></p> <!-- Elemento para exibir a mensagem de boas-vindas -->
+            <ul id="movie-list"></ul>
+            <form id="addMovieForm" onsubmit="addMovie(event)">
+                <input type="text" id="title" placeholder="Title" required>
+                <input type="text" id="director" placeholder="Director" required>
+                <input type="text" id="year" placeholder="Year" required></br>
+                <button id="filme" type="submit">Add Movie</button> 
+               
+            </form>
+            <button id="logout" onclick="logout()">Logout</button>
+           
+        </div>
+    </div>
+    
 
 
 </body>
