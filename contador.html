@@ -111,10 +111,10 @@
 
         <h1>Contador de Análises</h1>
         <label for="analises">Número de Análises:</label> <br>
-        <input type="number" id="analises" required>
+        <input type="number" id="analises" required min="0">
         <br>
         <label for="processamentos">Número de Processamentos:</label> <br>
-        <input type="number" id="processamentos" required>
+        <input type="number" id="processamentos" required min="0">
         <br>
         <button onclick="calcularTempo()">Calcular</button>
         <br>
@@ -137,6 +137,10 @@
                 alert("Por favor, preencha todos os campos.");
                 return;
             }
+            if (numAnalises < 0 || numProcessamentos < 0) {
+            alert("Por favor, insira valores não negativos.");
+            return;
+        }
 
             var tempoAnalise = 75; // minutos por análise
             var tempoProcessamento = 20; // minutos por processamento
