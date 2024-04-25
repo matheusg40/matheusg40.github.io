@@ -272,6 +272,8 @@ color: grey;
     margin-bottom: 15px;
     background-size: contain;
     overflow: hidden;
+    background-size: cover; 
+    background-position: center;
 
 
 }

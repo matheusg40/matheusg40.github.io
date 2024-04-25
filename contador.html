@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Contador - Matheus Gabriel Souza Batista</title>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Open+Sans&display=swap"
+        rel="stylesheet">
+
+    <script type="text/javascript" src="js/script.js"></script>
+
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+
+        input[type=number] {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: auto 10%;
+        }
+
+        #fogos-esquerda,
+        #fogos-meio,
+        #fogos-direita {
+            display: none;
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #fogos-esquerda {
+            /* top: 80%; */
+            left: 10%;
+        }
+
+        #fogos-meio {
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #fogos-direita {
+            /* top: 70%; */
+            right: 10%;
+        }
+
+        #chicote {
+            display: none;
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            top: 60%;
+            left: 80%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="navigation" id="navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="curriculo.html">Currículo</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li id="treslinhas-icon" class="treslinhas-icon" onclick="openNav()">&#9776;</li>
+        </ul>
+    </div>
+
+
+
+    <div class="main">
+
+        <ul class="caminho">
+			<li><a href="index.html">Home</a></li>
+			<li>></li>
+			<li><a href="portfolio.html">Portfolio</a></li>
+			<li>></li>
+			<li>Contador</li>
+		</ul>
+
+        <h1>Contador de Análises</h1>
+        <label for="analises">Número de Análises:</label> <br>
+        <input type="number" id="analises" required>
+        <br>
+        <label for="processamentos">Número de Processamentos:</label> <br>
+        <input type="number" id="processamentos" required>
+        <br>
+        <button onclick="calcularTempo()">Calcular</button>
+        <br>
+        <p id="resultado"></p>
+
+        <img id="fogos-esquerda" src="img/fogos.gif">
+        <img id="fogos-meio" src="img/fogos.gif">
+        <img id="fogos-direita" src="img/fogos.gif">
+
+        <img id="chicote" src="img/chicote.gif">
+
+    </div>
+
+    <script>
+        function calcularTempo() {
+            var numAnalises = parseInt(document.getElementById('analises').value);
+            var numProcessamentos = parseInt(document.getElementById('processamentos').value);
+
+            if (isNaN(numAnalises) || isNaN(numProcessamentos)) {
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
+
+            var tempoAnalise = 75; // minutos por análise
+            var tempoProcessamento = 20; // minutos por processamento
+            var metaMinutos = 495; // meta de minutos trabalhados
+
+            var tempoTrabalhado = (numAnalises * tempoAnalise) + (numProcessamentos * tempoProcessamento);
+
+            var faltaMinutos = metaMinutos - tempoTrabalhado;
+            var mensagem = "";
+            if (tempoTrabalhado >= metaMinutos) {
+                mensagem = "Parabéns! Você atingiu a meta. Fez hoje " + tempoTrabalhado + " minutos";
+                document.getElementById('fogos-esquerda').style.display = "block"; // Mostrar animação de fogos
+                document.getElementById('fogos-direita').style.display = "block"; // Mostrar animação de fogos
+                document.getElementById('fogos-meio').style.display = "block"; // Mostrar animação de fogos
+              
+              
+                setTimeout(function () {
+                    document.getElementById('fogos-esquerda').style.display =
+                        "none";
+                        document.getElementById('fogos-meio').style.display =
+                        "none";
+                        document.getElementById('fogos-direita').style.display =
+                        "none"; // Esconder animação de fogos após alguns segundos
+                }, 5000); // 5000 milissegundos = 5 segundos
+            } else {
+                mensagem = "Você trabalhou " + tempoTrabalhado + " minutos PARABÉNS. Faltam " + faltaMinutos +
+                    " minutos para atingir a meta.";
+                document.getElementById('chicote').style.display = "block"; // Mostrar animação de fogos
+                setTimeout(function () {
+                    document.getElementById('chicote').style.display =
+                        "none"; // Esconder animação de fogos após alguns segundos
+                }, 9000);
+
+            }
+
+            document.getElementById('resultado').innerText = mensagem;
+        }
+    </script>
+
+</body>
+
+</html>
