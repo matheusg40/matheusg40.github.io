@@ -30,31 +30,8 @@
     </style>
 </head>
 <body>
-    <div id="editor">
-        <textarea id="code" placeholder="Insira seu código Python aqui..."></textarea>
-        <button id="run-btn">Executar</button>
-    </div>
-    <div id="output"></div>
+   <a href="https://matheus40.pythonanywhere.com/"></a>
 
-    <script>
-        document.getElementById('run-btn').addEventListener('click', function() {
-            var code = document.getElementById('code').value;
 
-            fetch('http://localhost:8000/run', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ code: code })
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('output').innerText = data;
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-            });
-        });
-    </script>
 </body>
 </html>
