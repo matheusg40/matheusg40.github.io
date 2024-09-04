@@ -68,7 +68,7 @@ function updateBullets() {
                 asteroids.splice(j, 1);
                 bullets.splice(i, 1);
                 score += 100;
-                bulletsRemaining += 2;
+                bulletsRemaining += 20;
                 break;
             }
         }
