@@ -1,44 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
- 
-</head>
-<body>
-
-</body>
-</html>
-
-
-<!DOCTYPE html>
-
-<html>
-
-<head>
     <title>Trabalhos Plim - Matheus Gabriel Souza Batista</title>
 
-    <meta charset="utf-8">
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Open+Sans&display=swap"
         rel="stylesheet">
 
-
+    <!-- JavaScript -->
     <script type="text/javascript" src="js/script.js"></script>
 
-	<meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <style>
+       
+        canvas {
+            margin-top: 10%;
+            border: 1px solid #fff;
+        }
+
+        #startScreen,
+        #gameCanvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #startScreen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+
 
 </head>
 
-
 <body>
-
-
-
     <div class="navigation" id="navigation">
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -50,8 +63,6 @@
     </div>
 
     <div class="main">
-
-
         <ul class="caminho">
             <li><a href="index.html">Home</a></li>
             <li>></li>
@@ -60,16 +71,12 @@
             <li>joguinh</li>
         </ul>
 
-				<div class="gameContainer">
-					<canvas id="gameCanvas"></canvas>
-					
-			</div>
-
+        <div class="gameContainer">
+            <canvas id="gameCanvas"></canvas>
         </div>
+    </div>
 
-		<script src="js/scriptas.js"></script> <!-- Arquivo JavaScript com o código do jogo -->
-
-
+    <script src="js/scriptas.js"></script> <!-- Arquivo JavaScript com o código do jogo -->
 </body>
 
 </html>
