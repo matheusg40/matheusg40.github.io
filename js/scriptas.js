@@ -55,7 +55,6 @@ function createBullet() {
     }
 }
 
-// Update bullets
 function updateBullets() {
     for (let i = bullets.length - 1; i >= 0; i--) {
         bullets[i].y -= 5;
@@ -79,7 +78,6 @@ function updateBullets() {
     }
 }
 
-// Draw HUD
 function drawHUD() {
     ctx.fillStyle = "#ffffff";
     ctx.font = "24px Arial";
@@ -87,7 +85,6 @@ function drawHUD() {
     ctx.fillText("Bullets: " + bulletsRemaining, 10, 60);
 }
 
-// Draw spaceship
 function drawSpaceship() {
     ctx.drawImage(spaceshipImage, spaceshipX, spaceshipY, spaceshipWidth, spaceshipHeight);
 }
