@@ -9,7 +9,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    padding-top: 20px; /* Adiciona espaço na parte superior, se desejado */
+    padding-top: 20px; /* Espaço na parte superior */
 }
 
 .parallax {
@@ -17,7 +17,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-    padding-top: 40px; /* Adiciona espaço na parte superior da seção parallax */
+    padding-top: 40px; /* Espaço na parte superior da seção parallax */
 }
 
 #textoinicial {
@@ -26,7 +26,7 @@ body {
 
 .carousel-inner img {
     width: 100%;
-    height: 900px; /* Ajuste este valor conforme necessário */
+    height: 900px; /* Ajuste para um tamanho fixo */
     object-fit: cover; /* Garante que a imagem cubra o espaço sem distorção */
 }
 
@@ -52,4 +52,33 @@ body {
     transform: translateY(-100%); /* Move a nav bar para fora da tela */
     opacity: 0; /* Torna a nav bar invisível */
     transition: transform 0.3s ease, opacity 0.3s ease; /* Transição suave */
+}
+
+/* Estilos específicos para dispositivos móveis */
+@media (max-width: 768px) {
+    .hero {
+        height: 50vh; /* Altura reduzida para dispositivos móveis */
+    }
+   
+   
+
+    .parallax {
+        height: auto; /* Ajusta a altura para dispositivos móveis */
+    }
+
+    .carousel-inner img {
+        height: 200px; /* Altura ajustada do carrossel */
+    }
+
+    #cursos .col-md-4 {
+        margin-bottom: 30px; /* Espaço entre as colunas em dispositivos móveis */
+    }
+
+    #cursos h2 {
+        font-size: 1.5rem; /* Ajuste de tamanho do título */
+    }
+
+    #cursos p {
+        font-size: 1rem; /* Ajuste de tamanho do parágrafo */
+    }
 }
